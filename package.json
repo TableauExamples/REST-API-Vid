@@ -1,0 +1,19 @@
+{
+	"name":"REST-API-Vid",
+	"version":"0.0.1",
+	"description":"Tableau Server REST API Tutorial Video",
+	"dependencies": {
+		"express":"latest",
+		"jade":"latest",
+		"ejs": "latest",
+		"request": "latest",
+		"xml-writer": "latest",
+		"pretty-data": "latest"
+	},
+	"author": "Michael Kovner",
+	"repository": {
+	   "type": "git",
+	   "url": "https://github.com/Kovner/REST-API-Video.git"
+	 },
+	"main": "app.js"
+}
