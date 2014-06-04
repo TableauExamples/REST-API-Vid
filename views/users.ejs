@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tableau REST API Tutorial Video</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/users.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="headerRow">
+			<div class="page-header text-center">
+				<h1>Tableau Server REST API Tutorial Example</h1>
+				<h3>Users List</h3>
+				<a href="/"><h4>Main</h4></a>
+			</div>
+		</div>
+		<div class="row" id="bodyRow">
+			<div class="col-md-6 col-md-offset-3">
+				<table class="table">
+					<tr>
+						<th>Username</th>
+						<th>UserID</th>
+					</tr>
+					<% for(var user in userIDs) { %>
+						<tr>
+							<td><a href="/users/<%=user%>"><%=user%></a></td>
+							<td><%=userIDs[user]%></td>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+		</div>
+		<div class="row" id="bodyRow">
+			<div class="col-md-6 column col-md-offset-3">
+				<form role="form" method="post" action="/users">
+					<div class="form-group">
+						 <label for="Username">Add a new user: </label><input type="text" class="form-control" id="Username" name="Username">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div>
+		</div>
+		<div class="row" id="debug row">
+			<% if(err) { %>
+				<h3>Error: <%=err%></h3>
+			<% } %>
+		</div>
+		
+	</div>
+</body>
+</html>

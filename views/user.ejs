@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tableau REST API Tutorial Video</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/users.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="headerRow">
+			<div class="page-header text-center">
+				<h1>Tableau Server REST API Tutorial Example</h1>
+				<h3>Workbooks Published by <%=user%></h3>
+				<h4>(UserID: <%=userID%>)</h4>
+				<a href="/"><h4>Main</h4></a>
+			</div>
+		</div>
+		<div class="row" id="bodyRow">
+			<div class='col-md-3 col-md-offset-5'>	
+				<table class="table">
+					<tr>
+						<th>Workbook</th>
+					</tr>
+					<% for(var i = 0; i < workbooks.length; i++) { %>
+						<tr>
+							<td><%=workbooks[i]%></td>
+						</tr>
+					<% } %>
+				</table>
+			</div>
+		</div>
+		<div class="row" id="debug row">
+			<% if(err) { %>
+				<h3>Error: <%=err%></h3>
+			<% } %>
+		</div>
+		
+	</div>
+</body>
+</html>

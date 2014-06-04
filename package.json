@@ -3,12 +3,12 @@
 	"version":"0.0.1",
 	"description":"Tableau Server REST API Tutorial Video",
 	"dependencies": {
-		"express":"latest",
+		"express":"3.x",
 		"jade":"latest",
 		"ejs": "latest",
 		"request": "latest",
 		"xml-writer": "latest",
-		"pretty-data": "latest"
+		"node-jsxml": "latest"
 	},
 	"author": "Michael Kovner",
 	"repository": {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tableau REST API Tutorial Video</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/rest-tutorial.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="headerRow">
+			<div class="page-header text-center">
+				<h1>Tableau Server REST API Tutorial Example</h1>
+			</div>
+		</div>
+		<div class='row'>	
+			<!-- <button class='btn btn-large btn-default' type='button'><a href="/users"><h4>Users</h4></a></button> -->
+			<div class='col-md-6 col-md-offset-3'>
+				<a class='btn btn-large btn-default btn-block' href="/users"><h4>Load the list of Users</h4></a>
+			</div>
+		</div>
+		<div class="row" id="debug row">
+			<% if(err) { %>
+				<h3>Error: <%=err%></h3>
+			<% } %>
+		</div>
+		
+	</div>
+</body>
+</html>
