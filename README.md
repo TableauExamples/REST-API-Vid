@@ -21,7 +21,6 @@ In order to use these files you will have to have [NodeJS](http://nodejs.org/) i
 
 You will also need to change the first two lines of app.js to point them at the url of your server and the name of the site that you would like to use.
 
-If you do not have a site called 'rest' you will either have to add
 After downloading the files and installing NodeJS you can navigate with a command-line to the folder where these files live and enter:
 #####npm install
 This will download all of the required modules
