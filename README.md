@@ -34,5 +34,6 @@ Then you can enter:
 This code is not 'blessed' by Tableau Engineering or Support.
 What does that mean? We didn't have a qa team test it. It's an example of concepts and should be used as one.
 You should not expect that there are 0 bugs.
-If you have problems getting it to work
+If you have problems getting it to work, feel free to Email us with questions, but we won't promise quick responses.
 
+Sorry =)
