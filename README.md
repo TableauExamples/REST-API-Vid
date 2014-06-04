@@ -17,7 +17,7 @@ For that collection please see (github link to follow).
 ###How to use these files
 In order to use these files you will have to have [NodeJS](http://nodejs.org/) installed. NodeJS is Server Side JavaScript which allows the development of web applications in JavaScript.
 After downloading the files and installing NodeJS you can navigate with a command-line to the folder where these files live and enter:
-######npm install
+#####npm install
 This will download all of the required modules
 Then you can enter:
 #####node app.js
