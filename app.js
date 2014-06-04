@@ -1,3 +1,9 @@
+//
+// Change these to your server's url (and port if not 80) and the site you wish to use it on.
+//
+var SERVERURL = "mkovner-vm";
+var SITE = "rest"; 
+
 //Loading of Module Dependencies
 var XMLWriter = require('xml-writer');
 var request = require("request");
@@ -40,7 +46,7 @@ app.get('/', function(req,res) {
 			.writeAttribute('password', 'admin').startElement('site').writeAttribute('contentUrl', '');
 		request.post( 
 			{
-				url: 'http://mkovner-vm/api/2.0/auth/signin',
+				url: 'http://' + SERVERURL + '/api/2.0/auth/signin',
 				body: reqxml.toString(),
 				headers: {'Content-Type': 'text/xml'}
 			},
@@ -82,16 +88,13 @@ app.get('/', function(req,res) {
 // a user.
 app.post('/users', function(req,res) {
 	console.log("Request to add user: " + req.body.Username);
-	// We will add the user to site 'rest' but first we have to get the id of that site.
+	// We will add the user to the specified site but first we have to get the id of that site.
 	// This is a common theme with the REST API. If you want to do something in a specific site, you must
 	// query that site to find out it's id. Similarly, if you want to do something with a specific user,
 	// you have to query to find that user's id.
-
-	//Note: you should change the url of the server to your url or ip. Also, if you don't have a site named 'rest', you will
-	// have to change that part of the url to the name of a site on your server installation.
 	request(
 		{
-			url: "http://mkovner-vm/api/2.0/sites/rest?key=name",
+			url: 'http://' + SERVERURL + '/api/2.0/sites/' + SITE + '?key=name',
 			headers: {
 				'Content-Type': 'text/xml',
 				'X-Tableau-Auth': req.session.authToken
@@ -104,8 +107,8 @@ app.post('/users', function(req,res) {
 				res.redirect('/');
 			} else {
 				var bodyXML = new jsxml.XML(body);
-				req.session.restSiteID = bodyXML.child('site').attribute("id").getValue();
-				console.log("rest site id: " + req.session.restSiteID);
+				req.session.SiteID = bodyXML.child('site').attribute("id").getValue();
+				console.log("site id: " + req.session.SiteID);
 			}
 			// OK. We have the site, and we've stored it in the session cookie, now we add our new user to that site.
 
@@ -117,7 +120,7 @@ app.post('/users', function(req,res) {
 				.writeAttribute('suppressGettingStarted', 'true');
 			request.post( 
 				{
-					url: 'http://mkovner-vm/api/2.0/sites/' + req.session.restSiteID + '/users/',
+					url: 'http://' + SERVERURL + 'api/2.0/sites/' + req.session.SiteID + '/users/',
 					body: reqxml.toString(),
 					headers: {
 						'Content-Type': 'text/xml',
@@ -142,15 +145,15 @@ app.post('/users', function(req,res) {
 });
 
 // Navigating to /users with the browser (as opposed to making a POST to users) will render a page
-// with the list of users on the server, on the site called 'rest'.
+// with the list of users on the server, on the specified site.
 app.get('/users', function(req,res) {
 	console.log("List of users requested.");
-	// We will grab the list of users from site 'rest', but first we have to grab the site id
-	// (Same idea as when we added users. We could have checked if req.session.restSiteID has been populated,
+	// We will grab the list of users from the specified site, but first we have to grab the site id
+	// (Same idea as when we added users. We could have checked if req.session.SiteID has been populated,
 	// but I chose to keep it simple instead)
 	request(
 		{
-			url: "http://mkovner-vm/api/2.0/sites/rest?key=name",
+			url: 'http://' + SERVERURL + '/api/2.0/sites/' + SITE + '?key=name',
 			headers: {
 				'Content-Type': 'text/xml',
 				'X-Tableau-Auth': req.session.authToken
@@ -162,15 +165,15 @@ app.get('/users', function(req,res) {
 				res.redirect('/');
 			} else {
 				var bodyXML = new jsxml.XML(body);
-				req.session.restSiteID = bodyXML.child('site').attribute("id").getValue();
-				console.log("rest site id: " + req.session.restSiteID);
+				req.session.SiteID = bodyXML.child('site').attribute("id").getValue();
+				console.log("site id: " + req.session.SiteID);
 			}
 			// OK. We have the site, now let's grab the list of users
 			// Since we're just making a GET request, we don't need to build the xml. All the is needed
 			// is the SiteID which is inserted in the url and the auth token which is included in the headers
 			request( 
 				{
-					url: 'http://mkovner-vm/api/2.0/sites/' + req.session.restSiteID + '/users/',
+					url: 'http://' + SERVERURL + '/api/2.0/sites/' + req.session.SiteID + '/users/',
 					headers: {
 						'Content-Type': 'text/xml',
 						'X-Tableau-Auth': req.session.authToken
@@ -213,7 +216,7 @@ app.get('/users/:user', function(req, res) {
 	// .../users/userid we query .../users/userid/workbooks
 	request( 
 		{
-			url: 'http://mkovner-vm/api/2.0/sites/' + req.session.restSiteID 
+			url: 'http://' + SERVERURL + '/api/2.0/sites/' + req.session.SiteID 
 				+ '/users/' + userIDs[req.params.user] + '/workbooks',
 			headers: {
 				'Content-Type': 'text/xml',
