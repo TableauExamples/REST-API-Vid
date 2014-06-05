@@ -1,7 +1,7 @@
 //
 // Change these to your server's url (and port if not 80) and the site you wish to use it on.
 //
-var SERVERURL = "mkovner-vm";
+var SERVERURL = "10.211.55.11";
 var SITE = "rest"; 
 
 //Loading of Module Dependencies
@@ -120,7 +120,7 @@ app.post('/users', function(req,res) {
 				.writeAttribute('suppressGettingStarted', 'true');
 			request.post( 
 				{
-					url: 'http://' + SERVERURL + 'api/2.0/sites/' + req.session.SiteID + '/users/',
+					url: 'http://' + SERVERURL + '/api/2.0/sites/' + req.session.SiteID + '/users/',
 					body: reqxml.toString(),
 					headers: {
 						'Content-Type': 'text/xml',
